@@ -4,16 +4,18 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { inc } from '../../publics/redux/actions/contact';
 
-class App extends React.Component {
+class Contact extends React.Component {
 
   componentDidMount() {
-    setInterval(() => this.props.dispatch(inc(this.props.contact.number - 1)), 1000)
+    // setInterval(
+    //   () => this.props.dispatch(inc(this.props.contact.number + 1)
+    // ), 1000)
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.props.contact.number}</Text>
+        <Text style={styles.textCounter}>{this.props.contact.number}</Text>
       </View>
     );
   }
@@ -25,7 +27,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Contact);
 
 const styles = StyleSheet.create({
   container: {
@@ -34,4 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textCounter: {
+    fontSize: 100
+  }
 });

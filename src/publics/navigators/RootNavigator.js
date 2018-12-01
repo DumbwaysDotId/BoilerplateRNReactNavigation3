@@ -5,6 +5,8 @@ import {
 } from 'react-navigation';
 
 import Contact from '../../contact/screens/Contact';
+import Chat from '../../contact/screens/Chat';
+
 
 const App = createBottomTabNavigator({
   Contact: {
@@ -14,7 +16,7 @@ const App = createBottomTabNavigator({
     }
   },
   Chat: {
-    screen: Contact,
+    screen: Chat,
     navigationOptions: {
       title: 'Chat'
     }

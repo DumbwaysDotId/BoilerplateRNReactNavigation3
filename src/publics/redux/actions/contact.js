@@ -4,3 +4,10 @@ export const inc = (number) => {
     payload: number
   }
 }
+
+export const dec = (number) => {
+  return {
+    type: 'DEC',
+    payload: number
+  }
+}
