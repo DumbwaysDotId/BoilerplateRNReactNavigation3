@@ -1,13 +1,8 @@
-export const inc = (number) => {
-  return {
-    type: 'INC',
-    payload: number
-  }
-}
+import axios from 'axios';
 
-export const dec = (number) => {
+export const get = () => {
   return {
-    type: 'DEC',
-    payload: number
+    type: 'GET_CONTACT',
+    payload: axios.get('http://192.168.0.62:5000/getdatas')
   }
 }
