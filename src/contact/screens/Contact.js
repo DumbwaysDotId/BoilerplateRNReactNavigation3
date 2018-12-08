@@ -1,41 +1,69 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import axios from 'axios';
+import { ListItem, Text, Body, Fab } from 'native-base'
 
 import { get } from '../../publics/redux/actions/contact';
 
 class Contact extends React.Component {
 
+  constructor(props) {
+    super(props);
+    
+  }
   componentDidMount() {
-    this.props.dispatch(get())
-    .then(res => {
-      alert('success')
-    })
-    .catch(err => {
-      alert('err')
+    // this.props.dispatch(get())
+    // .then(res => {
+    //   alert('success')
+    // })
+    // .catch(err => {
+    //   alert('err')
+    // })
+  }
+
+  renderItem = ({ item, index }) => {
+    return (
+      <ListItem key={index}>
+        <Body>
+          <Text>{item.name}</Text>
+          <Text note>{item.address}</Text>
+        </Body>
+      </ListItem>
+    )
+  }
+
+  handleCreate = () => {
+    this.props.dispatch({
+      type: 'Navigation/NAVIGATE',
+      routeName: 'ContactCreate'
     })
   }
+
+  _keyExtractor = ( item, index) => index.toString();
 
   render() {
     return (
       <View style={styles.container}>
-        {this.props.contact.isLoading ? <ActivityIndicator size="large" /> : null}
-        <ScrollView>
-        {
-          this.props.contact.data.map((item) => (
-            <View key={item.id} style={styles.item}>
-              <Text>{item.name}</Text>
-            </View>
-          ))
-        }
-        </ScrollView>
+        <FlatList
+          data={this.props.contact.data}
+          renderItem={this.renderItem}
+          keyExtractor={this._keyExtractor}
+          extraData={this.props.contact}
+        />
+        <Fab
+          containerStyle={{ justifyContent: 'center', alignItems: 'center'}}
+          style={{ backgroundColor: '#000' }}
+          position="bottomRight"
+          onPress={this.handleCreate}>
+          <Text>+</Text>
+        </Fab>
       </View>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     contact: state.contact
   }

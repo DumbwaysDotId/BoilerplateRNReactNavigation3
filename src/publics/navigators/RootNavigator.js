@@ -5,12 +5,27 @@ import {
 } from 'react-navigation';
 
 import Contact from '../../contact/screens/Contact';
+import ContactCreate from '../../contact/screens/ContactCreate';
 import Chat from '../../contact/screens/Chat';
 
-
-const App = createBottomTabNavigator({
+const ContactStack = createStackNavigator({
   Contact: {
     screen: Contact,
+    navigationOptions: {
+      title: 'Contact List'
+    }
+  },
+  ContactCreate: {
+    screen: ContactCreate,
+    navigationOptions: {
+      title: 'Create'
+    }
+  }
+})
+
+const App = createBottomTabNavigator({
+  ContactStack: {
+    screen: ContactStack,
     navigationOptions: {
       title: 'Contact'
     }

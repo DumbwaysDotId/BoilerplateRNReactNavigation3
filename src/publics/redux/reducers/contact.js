@@ -1,5 +1,26 @@
 const initialValue = {
-  data: [],
+  data: [
+    {
+      name: 'Hamdan',
+      address: 'Cirebon'
+    },
+    {
+      name: 'Diki',
+      address: 'Tuban'
+    },
+    {
+      name: 'Arif',
+      address: 'Tegal'
+    },
+    {
+      name: 'Tama',
+      address: 'Tangerang'
+    },
+    {
+      name: 'Rifki',
+      address: 'Pekalongan'
+    }
+  ],
   isLoading: false,
   isError: false,
   isFinish: false
@@ -28,6 +49,10 @@ export default (state = initialValue, action) => {
         isError: true,
         data: 'Error Network'
       };
+
+    case 'CREATE_CONTACT': 
+      state.data.push(action.payload);
+      return state
 
     default:
       return state;
