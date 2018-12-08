@@ -51,8 +51,13 @@ export default (state = initialValue, action) => {
       };
 
     case 'CREATE_CONTACT': 
-      state.data.push(action.payload);
-      return state
+      return {
+        ...state,
+        data: [
+          ...state.data,
+          action.payload
+        ]
+      }
 
     default:
       return state;
